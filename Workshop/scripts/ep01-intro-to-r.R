@@ -25,17 +25,17 @@
 # What does: 11 + 1 / 6  evaluate to ?
 
 # Solution:
-
+11 + 1 / 6
 
 # Calculate 10 plus 2 all divided by 3 and then squared
 
 # Solution:
-
+((10+2)/3)^2
 
 
 
 # Storing values
-a <- 3              # assign the number 3 to OBJECT (variable) called "a"
+a <- 8              # assign the number 3 to OBJECT (variable) called "a"
 b <- 5              # assign 5 to b
 
 a                   # so what's the value of OBJECT "a"
@@ -48,24 +48,25 @@ a + b               # we can add them together just like numbers
 # --------
 #
 # What happens if we change a and then re-add a and b? [Hint: Try it now]
-#
+a <- 8
+a+b
 # Does it work if you just change a in the script and then add a and b? [Hint: Try it]
-#
+a+b
 # Did you still get the same answer after you changed a? 
 # If so, why do you think that might be?
 #
 # We can also assign the result of a + b to a new variable, c. 
 # How would you do this?
-#
-# Solution:
 
+# Solution:
+c <- a+b
 
 
 # Logical operators
 #
 # == != < > >= <= !
 1 < 124
-
+1 > 124
 #
 # Sensible object names are sensible ...
 #
@@ -77,7 +78,7 @@ names_that_are_unreasonably_long_are_not_a_good_idea <- "correct"
 nouns_are_good <- TRUE
 TRUE <- 17
 ekljre2jklwef023ijlefj93jkl23rj90f32k <- 1
-
+e <- "5"
 # 
 # Exercise
 # 
@@ -85,7 +86,7 @@ ekljre2jklwef023ijlefj93jkl23rj90f32k <- 1
 # Assign the name of this workshop to a object with a good name.
 #
 # Solution: [Hint:       <- "Introduction to R"]
-
+w_name <- "Introduction to R"
 # Assign the name of video conferencing tool we are using to an object
 #
 # Solution: [Hint:      <- "Zoom"]
@@ -93,14 +94,14 @@ ekljre2jklwef023ijlefj93jkl23rj90f32k <- 1
 
 # Which of these are valid object names: [Hint: Try them out]
 #
-#  min_height
-#  max.height
-#  _age
-#  .mass
-#  MaxLength
-#  min-length
-#  2widths
-#  celsius2kelvin
+min_height <- "try"
+max.height <- "try"
+_age <- "try"
+.mass <- "try"
+MaxLength <- "try"
+min-length <- "try"
+2widths <- "try"
+celsius2kelvin <- "try"
 
 #
 # Topic: Displaying results
@@ -125,11 +126,12 @@ weight_kg
 # 
 # What are the values after each statement in the following?
 # 
-# mass <- 47.5            # mass is: 
-# age  <- 122             # age is:
-# mass <- mass * 2.0      # mass is:
-# age  <- age - 20        # age is:
-# mass_index <- mass/age  # mass_index is: 
+mass <- 47.5            # mass is: 
+age  <- 122             # age is:
+mass <- mass * 2.0      # mass is:
+mass * 2.0  
+age  <- age - 20        # age is:
+mass_index <- mass/age  # mass_index is: 
 #
 # How do we do we know if our answers are correct ? 
 # [Hint: <highlight> [ALT][ENTER]
@@ -150,9 +152,11 @@ weight_kg
 #
 # Add explanatory comments to the following lines of code
 
-ft <- 3
-in <- ft * 12
-cms <- in * 2.54
+ft <- 3           #length in feet
+ft * 12
+In <- ft * 12     #conversion from feet to inches
+cms <- In * 2.54  #2.54 is the converions factor
+cms
 m = cms / 100
 
 #
@@ -167,17 +171,18 @@ pi
 # Getting help about particular functions 
 ?round
 args(round)
+?args
 
 round(3.14159, digits = 2)
 round(digits = 2, x = 3.14159)
-
+round (3.1415, 3)
 #
 # Exercise
 #
 # what does the function called log10() do ?  Can you test it ?
 #
 # Answer:
-
+log10(100)
 
 
 #
