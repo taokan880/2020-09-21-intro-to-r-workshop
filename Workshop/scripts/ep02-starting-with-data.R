@@ -15,12 +15,19 @@
 download.file(url = "https://ndownloader.figshare.com/files/2292169",
               destfile = "data_raw/portal_data_joined.csv")
 
+url is arguments
+destfile is desktop file source
+a whole bunch of ..
+34786 obs. of 13 variables
+observations
+  
 # now we will read this "csv" into an R object called "surveys"
 surveys <- read.csv("data_raw/portal_data_joined.csv")
 
 # and take a look at it
-
-
+surveys
+head(surveys)
+View(surveys)
 
 # BTW, we assumed our data was comma separated, however this might not
 # always be the case. So we may been to tell read.csv more about our file.
@@ -28,13 +35,32 @@ surveys <- read.csv("data_raw/portal_data_joined.csv")
 
 
 # So what kind of an R object is "surveys" ?
-
+class(surveys)
 
 
 # ok - so what are dataframes ?
 
+str(surveys)
 
+#int: introduce
+dim(surveys)
+nrow(surveys)
+# number of rows
+ncol(surveys)
+head(surveys)
+tail(surveys)
 
+#tail can be used to check the end of table to make sure there is no trash data.
+
+head(surveys,20)
+tail(surveys, 5)
+
+tail(surveys)
+
+names(surveys)
+# names of columns
+rownames(surveys)
+summary(surveys)
 # --------
 # Exercise
 # --------
@@ -42,32 +68,39 @@ surveys <- read.csv("data_raw/portal_data_joined.csv")
 # What is the class of the object surveys?
 #
 # Answer:
-
+data.frame
 
 # How many rows and how many columns are in this survey ?
 #
 # Answer:
+34786
+13
 
 # What's the average weight of survey animals
-#
-#
-# Answer:
 
+
+# Answer:
+summary(surveys)
+42.67
 # Are there more Birds than Rodents ?
 #
 #
 # Answer:
-
+summary(surveys)
+No
 
 # 
 # Topic: Sub-setting
 #
 
 # first element in the first column of the data frame (as a vector)
+surveys[1,1]
+surveys[1,6]
+#[row number, column number]
 
 
 # first element in the 6th column (as a vector)
-
+surveys[,6]
 
 # first column of the data frame (as a vector)
 
