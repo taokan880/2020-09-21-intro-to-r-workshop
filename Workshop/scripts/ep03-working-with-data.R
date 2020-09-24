@@ -47,25 +47,35 @@ str(surveys)
 #-----------------------------------
 # select three colums:
 select(surveys, plot_id, species_id, weight)
+#surveys放在第一个位置
+after_selection <- select(surveys, plot_id, species_id, weight)
+view(after_selection)
 
 #exclude two columns:
 select(surveys, -plot_id, -species_id)
 
 #filter for a particular year
 surveys_1995 <- filter(surveys, year == 1995)
-
-#<- is assignment sign
+surveys_1995_2 <- filter(surveys, year = 1995)#cannot be run
+#<- is assignment operator
 
 surveys2 <- filter (surveys, weight < 5)
 surveys_sml <- select(surveys2, species_id, sex, weight)
 
+surveys_1977 <- surveys %>% 
+filter(surveys, year == 1977, weight < 5) %>% 
+#注意：surveys 不能写成surveys_1977
+view()
+
 #combine the above two:
 surveys_sml <- select(filter (surveys, weight < 5), species_id, sex, weight)
+#注意: filter 放在第一个位置。
+
 
 #-------
 # Pipes
 #3.1 %>% 向右操作符(forward-pipe operator)
-
+显得更加有条理和清晰
 #%>%是最常用的一个操作符，就是把左侧准备的数据或表达式，传递给右侧的函数调用或表达式进行运行，可以连续操作就像一个链条一样。
 #-------
 #The pipe --->   %>%
@@ -101,8 +111,8 @@ survey_1995 <- surveys %>%
 
 #creat a new column and keep the orignal column
 surveys_weights <- surveys %>% 
-  mutate(weight_kg = weight/1000)
-
+#  mutate(weight_kg = weight/1000)
+#只加一列
 mutate(weight_kg = weight/1000,
        weight_lb = weight_kg*2.2) %>% 
   view(surveys_weights)
@@ -114,7 +124,9 @@ surveys %>%
   filter(!is.na(weight)) %>% 
   mutate(weight_kg = weight/1000) %>% 
   head(20)
-filter(length !="")
+
+filter(length !=" ")
+#what is this code for?
 
 #-----------
 # CHALLENGE
@@ -157,14 +169,14 @@ surveys %>%
   summarise(mean_weight = mean(weight, na.rm = TRUE))
 
 summarise(surveys)
-# 不能用于不同种类的数据?
+# 不能用,是因为前面必须先group_by吗？
 ?summarise
 
 
 #try:
 surveys %>% 
   dplyr::group_by(sex)
-
+# 讲解人说这符号是column，column
 
 summary(surveys)
 length(surveys)
@@ -179,6 +191,7 @@ surveys %>%
   summarise(mean_weight = mean(weight)) %>% 
   # head or tail()
   print(n = 20)
+#can't use view(n = 20)
 
 surveys %>% 
   filter(!is.na(weight), !is.na(sex)) %>% 
@@ -207,12 +220,13 @@ surveys %>%
 
 surveys %>% 
   count(sex)
+# 先group—_by(sex),然后计算各group的数量
 
 #or use:
   surveys %>% 
   group_by(sex) %>% 
   summarise(count = n())
-
+#上一行不能直接用count = n()
   
   surveys %>% 
     group_by(sex, species, taxa) %>% 
@@ -220,10 +234,15 @@ surveys %>%
 
  # From Jonathon Mifsud to Everyone:  11:17 AM
   #Hi Evan, when using group_by(), what if I would like to group by a second variable (e.g. species_id) further down in the pipeline but not continue to group by the first variable (e.g. sex)
+  #上述问题解决了么？
+  
   surveys_new <- surveys %>% 
     group_by(sex, species, taxa) %>% 
     summarise(count = n()) %>% 
-    ungroup()
+    ungroup() %>%
+  group_by(species, taxa) %>% 
+    summarise(count = n())
+  #上面最后两行是我自己加的。
   
   surveys_new %>% 
     summarise(mean_weight = mean(weight))
